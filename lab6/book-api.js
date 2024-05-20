@@ -27,23 +27,13 @@ app.get('/books', (req, res) => {
 	res.json(books);
 });
 
-app.delete("/book/:ibsn", (req, res) => {
-	const isbn = req.params.ibsn;
-	books = books.filter(book => book.ibsn !== ibsn);
-	res.send('Book with ISBN ${ibsn} is deleted')
+app.delete("/book/:isbn", (req, res) => {
+	const isbn = req.params.isbn;
+	books = books.filter(book => book.isbn !== isbn);
+	res.send(`Book with ISBN ${isbn} is deleted`)
 
 });
 
-app.get('/books', (req, res) => {
-	res.json(books);
-});
-
-app.delete("/book/:ibsn", (req, res) => {
-	const isbn = req.params.ibsn;
-	books = books.filter(book => book.ibsn !== ibsn);
-	res.send('Book with ISBN ${ibsn} is deleted')
-
-});
 
 
 app.listen(port, () => {
