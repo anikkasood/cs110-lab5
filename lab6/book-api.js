@@ -23,4 +23,10 @@ app.post("/book", (req, res) => {
 	res.send(`Book is added to the database`); 
 });
 
-app.listen(port, ()=> console.log(`Hello world app listening on port`))
+app.get('/books', (req, res) =>{
+	res.json(books);
+});
+
+app.listen(port, () => {
+    console.log(`Hello world app listening on port ${port}`);
+});
