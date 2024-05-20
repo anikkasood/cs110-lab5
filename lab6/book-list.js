@@ -11,7 +11,7 @@ async function loadBooks() {
         const books = JSON.parse(data);
 
         for (let book of books) {
-            const x = 
+            const x = `
                 <div class = "col-4">
                     <div class="card">
                         <div class="card-body">
@@ -24,7 +24,7 @@ async function loadBooks() {
 
                             <hr>
                             
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <button type="button" class="btn btn-danger" onClick="deleteBook(${book.isbn})">Delete</button>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#editBookModal" onClick="setEditModal(${book.isbn})">
                                     Edit
@@ -33,8 +33,11 @@ async function loadBooks() {
                         </div>
                     </div>
                 </div>
+            `
 
-            document.getElementById('books').innerHTML = document.getElementById('books').innerHTML + x;
+            // document.getElementById('books').innerHTML = document.getElementById('books').innerHTML + x;
+            document.getElementById('books').innerHTML =+ x;
+
         }
     }
 
