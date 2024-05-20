@@ -20,7 +20,7 @@ app.post("/book", (req, res) => {
 	console.log(book); 
 	books.push(book); 
 
-	res.send("Book is added to the database"); 
+	res.send(`Book is added to the database`); 
 });
 
-app.listen(port, ()=> console.log("Hello world app listening on port"))
+app.listen(port, ()=> console.log(`Hello world app listening on port`))
