@@ -12,7 +12,7 @@ async function loadBooks() {
 
         for (let book of books) {
             const x = `
-                <div class = "col-4">
+                <div class = "col-4" id="book-${book.isbn}">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">${book.title}</h5>
@@ -24,20 +24,41 @@ async function loadBooks() {
 
                             <hr>
                             
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <button type="button" class="btn btn-danger" onClick="deleteBook('${book.isbn}')">Delete</button>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#editBookModal" onClick="setEditModal(${book.isbn})">
+                                data-target="#editBookModal" onClick="setEditModal('${book.isbn}')">
                                     Edit
                                 </button>
                             
                         </div>
                     </div>
                 </div>
-                `
+            `
+
+            // document.getElementById('books').innerHTML = document.getElementById('books').innerHTML + x;
             document.getElementById('books').innerHTML += x;
+
         }
     }
 
+
+}
+
+async  function deleteBook(isbn){
+    try{
+        let response = await fetch(`http://localhost:3000/book/${isbn}`,{
+            method: 'DELETE'
+        });
+
+        if(response.ok){
+            document.getElementById(`book-${isbn}`).remove();
+        }else {
+            console.error('Failed to delete book');
+        }
+    }catch (error) {
+        console.error('Error deleting book:', error);
+    }
+   
 
 }
 

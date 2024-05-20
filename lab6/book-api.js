@@ -23,9 +23,18 @@ app.post("/book", (req, res) => {
 	res.send(`Book is added to the database`); 
 });
 
-app.get('/books', (req, res) =>{
+app.get('/books', (req, res) => {
 	res.json(books);
 });
+
+app.delete("/book/:isbn", (req, res) => {
+	const isbn = req.params.isbn;
+	books = books.filter(book => book.isbn !== isbn);
+	res.send(`Book with ISBN ${isbn} is deleted`)
+
+});
+
+
 
 app.listen(port, () => {
     console.log(`Hello world app listening on port ${port}`);
